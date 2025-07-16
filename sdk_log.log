@@ -1,0 +1,128 @@
+[2025-07-14T15:22:59.302 info Netsdk:87378 2391:2391 AVNetSDKMgr.cpp:506]Load avnetsdk library dynamically
+[2025-07-14T15:22:59.324 info Netsdk:87378 2391:2391 AVNetSDKMgr.cpp:551]avnetsdk module handle: 0x20383c0
+
+[2025-07-14T15:22:59.324 info Netsdk:87378 2391:2391 AVNetSDKMgr.cpp:826]Load configsdk dynamically
+[2025-07-14T15:25:58.440 info Netsdk:87378 2391:2391 netsdk.cpp:993]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0x7fdc654aaed0, pstOutParam:0x7fdc5fadad50.
+[2025-07-14T15:25:58.440 info Netsdk:87378 2391:2391 netsdk.cpp:1009]IP:172.19.11.173, port:37777, SpeCap:0, CapParam:(nil), TLSCap:0
+[2025-07-14T15:25:58.440 info Netsdk:87378 2391:2391 devprob.cpp:3567]login with localIP:
+[2025-07-14T15:25:58.441 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:25:58.452 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:25:58.452 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 60854
+[2025-07-14T15:25:58.683 error Netsdk:87378 2391:2401 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:25:58.683 error Netsdk:87378 2391:2401 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:25:58.691 error Netsdk:87378 2391:2401 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:25:58.691 error Netsdk:87378 2391:2401 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:25:58.692 info Netsdk:87378 2391:2391 netsdk.cpp:1057]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:0x2105a50.
+[2025-07-14T15:27:45.506 info Netsdk:87378 2391:2391 netsdk.cpp:1078]Enter CLIENT_Logout. lLoginID:0x2105a50.
+[2025-07-14T15:27:45.519 info Netsdk:87378 2391:2391 netsdk.cpp:1100]Leave CLIENT_Logout. ret:1
+[2025-07-14T15:27:50.046 info Netsdk:87378 2391:2391 netsdk.cpp:993]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0x7fdc26349db0, pstOutParam:0x7fdc262718a0.
+[2025-07-14T15:27:50.046 info Netsdk:87378 2391:2391 netsdk.cpp:1009]IP:172.19.11.173, port:37777, SpeCap:0, CapParam:(nil), TLSCap:0
+[2025-07-14T15:27:50.046 info Netsdk:87378 2391:2391 devprob.cpp:3567]login with localIP:
+[2025-07-14T15:27:50.048 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:27:50.053 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:27:50.054 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 60872
+[2025-07-14T15:27:50.214 error Netsdk:87378 2391:2402 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:27:50.214 error Netsdk:87378 2391:2402 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:27:50.217 info Netsdk:87378 2391:2391 netsdk.cpp:1057]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:0x2105a50.
+[2025-07-14T15:27:50.218 error Netsdk:87378 2391:2402 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:27:50.219 error Netsdk:87378 2391:2402 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:28:23.427 info Netsdk:87378 2391:2391 netsdk.cpp:10840]Enter CLIENT_RealLoadPictureEx. lLoginID:0x2105a50, nChannelID:0, dwAlarmType:23, bNeedPicFile:1, cbAnalyzerData:0x7fdc65a60010, dwUser:(nil), Reserved:(nil).
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5201]interface num = 10
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.122.60
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.5.55
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.41.153
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.214.138
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.162.59
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 127.0.0.1
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.126.100
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.188.183
+[2025-07-14T15:28:23.428 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.10.37
+[2025-07-14T15:28:23.429 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 10.50.10.99
+[2025-07-14T15:28:23.439 error Netsdk:87378 2391:2391 Generation2ProtocolSecureTransmit.cpp:661]Not find
+[2025-07-14T15:28:23.439 info Netsdk:87378 2391:2391 DevConfigEx.cpp:13612]IN SetupSession PORT=0 and PORT: 37777
+[2025-07-14T15:28:23.441 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:28:23.448 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:28:23.448 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 60875
+[2025-07-14T15:28:23.448 info Netsdk:87378 2391:2391 TcpSocket.cpp:2369]bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:28:23.448 info Netsdk:87378 2391:2391 TcpSocket.cpp:2384]IsStandardTls bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:28:23.507 info Netsdk:87378 2391:2391 netsdk.cpp:10859]Leave CLIENT_RealLoadPictureEx. ret:39885776.
+[2025-07-14T15:33:09.765 info Netsdk:87378 2391:2391 netsdk.cpp:10872]Enter CLIENT_StopLoadPic. lAnalyzerHandle:39885776.
+[2025-07-14T15:33:09.765 info Netsdk:87378 2391:2391 netsdk.cpp:10879]Leave CLIENT_StopLoadPic. ret:1.
+[2025-07-14T15:33:09.765 info Netsdk:87378 2391:2391 netsdk.cpp:1078]Enter CLIENT_Logout. lLoginID:0x2105a50.
+[2025-07-14T15:33:09.776 info Netsdk:87378 2391:2391 netsdk.cpp:1100]Leave CLIENT_Logout. ret:1
+[2025-07-14T15:33:11.697 info Netsdk:87378 2391:2391 netsdk.cpp:993]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0x7fdc26349db0, pstOutParam:0x7fdc262718a0.
+[2025-07-14T15:33:11.697 info Netsdk:87378 2391:2391 netsdk.cpp:1009]IP:172.16.0.2, port:37777, SpeCap:0, CapParam:(nil), TLSCap:0
+[2025-07-14T15:33:11.697 info Netsdk:87378 2391:2391 devprob.cpp:3567]login with localIP:
+[2025-07-14T15:33:11.699 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:33:11.702 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:33:11.702 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 57830
+[2025-07-14T15:33:12.003 info Netsdk:87378 2391:2391 netsdk.cpp:1057]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:0x2105a50.
+[2025-07-14T15:33:12.051 error Netsdk:87378 2391:2404 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:33:12.052 error Netsdk:87378 2391:2404 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:33:12.055 error Netsdk:87378 2391:2404 JsonParser.cpp:7094]result : false, error code : 0x10070002
+[2025-07-14T15:33:12.063 error Netsdk:87378 2391:2404 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:33:12.063 error Netsdk:87378 2391:2404 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:33:30.982 info Netsdk:87378 2391:2391 netsdk.cpp:10840]Enter CLIENT_RealLoadPictureEx. lLoginID:0x2105a50, nChannelID:0, dwAlarmType:23, bNeedPicFile:1, cbAnalyzerData:0x7fdc65a60010, dwUser:(nil), Reserved:(nil).
+[2025-07-14T15:33:30.983 info Netsdk:87378 2391:2391 Utils.cpp:5201]interface num = 10
+[2025-07-14T15:33:30.983 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.122.60
+[2025-07-14T15:33:30.983 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.5.55
+[2025-07-14T15:33:30.983 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.41.153
+[2025-07-14T15:33:30.984 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.214.138
+[2025-07-14T15:33:30.984 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.162.59
+[2025-07-14T15:33:30.984 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 127.0.0.1
+[2025-07-14T15:33:30.984 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.126.100
+[2025-07-14T15:33:30.985 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.188.183
+[2025-07-14T15:33:30.985 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.10.37
+[2025-07-14T15:33:30.985 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 10.50.10.99
+[2025-07-14T15:33:31.018 error Netsdk:87378 2391:2391 Generation2ProtocolSecureTransmit.cpp:661]Not find
+[2025-07-14T15:33:31.018 info Netsdk:87378 2391:2391 DevConfigEx.cpp:13612]IN SetupSession PORT=0 and PORT: 37777
+[2025-07-14T15:33:31.019 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:33:31.021 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:33:31.021 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 57831
+[2025-07-14T15:33:31.021 info Netsdk:87378 2391:2391 TcpSocket.cpp:2369]bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:33:31.021 info Netsdk:87378 2391:2391 TcpSocket.cpp:2384]IsStandardTls bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:33:31.073 info Netsdk:87378 2391:2391 netsdk.cpp:10859]Leave CLIENT_RealLoadPictureEx. ret:34826288.
+[2025-07-14T15:34:19.573 info Netsdk:87378 2391:2391 netsdk.cpp:10872]Enter CLIENT_StopLoadPic. lAnalyzerHandle:34826288.
+[2025-07-14T15:34:19.574 info Netsdk:87378 2391:2391 netsdk.cpp:10879]Leave CLIENT_StopLoadPic. ret:1.
+[2025-07-14T15:34:19.574 info Netsdk:87378 2391:2391 netsdk.cpp:1078]Enter CLIENT_Logout. lLoginID:0x2105a50.
+[2025-07-14T15:34:19.585 info Netsdk:87378 2391:2391 netsdk.cpp:1100]Leave CLIENT_Logout. ret:1
+[2025-07-14T15:34:44.559 info Netsdk:87378 2391:2391 netsdk.cpp:993]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0x7fdc26349db0, pstOutParam:0x7fdc262718a0.
+[2025-07-14T15:34:44.560 info Netsdk:87378 2391:2391 netsdk.cpp:1009]IP:172.19.11.173, port:37777, SpeCap:0, CapParam:(nil), TLSCap:0
+[2025-07-14T15:34:44.560 info Netsdk:87378 2391:2391 devprob.cpp:3567]login with localIP:
+[2025-07-14T15:34:44.562 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:34:44.568 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:34:44.568 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 57845
+[2025-07-14T15:34:44.799 error Netsdk:87378 2391:2406 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:34:44.800 error Netsdk:87378 2391:2406 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:34:44.804 info Netsdk:87378 2391:2391 netsdk.cpp:1057]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:0x2105a50.
+[2025-07-14T15:34:44.808 error Netsdk:87378 2391:2406 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:34:44.808 error Netsdk:87378 2391:2406 JsonParser.cpp:7094]result : false, error code : 0x1007ffff
+[2025-07-14T15:34:53.188 info Netsdk:87378 2391:2391 netsdk.cpp:10840]Enter CLIENT_RealLoadPictureEx. lLoginID:0x2105a50, nChannelID:0, dwAlarmType:23, bNeedPicFile:1, cbAnalyzerData:0x7fdc65a60010, dwUser:(nil), Reserved:(nil).
+[2025-07-14T15:34:53.189 info Netsdk:87378 2391:2391 Utils.cpp:5201]interface num = 10
+[2025-07-14T15:34:53.189 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.122.60
+[2025-07-14T15:34:53.189 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.5.55
+[2025-07-14T15:34:53.189 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.41.153
+[2025-07-14T15:34:53.189 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.214.138
+[2025-07-14T15:34:53.190 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.162.59
+[2025-07-14T15:34:53.190 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 127.0.0.1
+[2025-07-14T15:34:53.190 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.126.100
+[2025-07-14T15:34:53.190 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.188.183
+[2025-07-14T15:34:53.190 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 169.254.10.37
+[2025-07-14T15:34:53.191 info Netsdk:87378 2391:2391 Utils.cpp:5210]cur IP 10.50.10.99
+[2025-07-14T15:34:53.213 error Netsdk:87378 2391:2391 Generation2ProtocolSecureTransmit.cpp:661]Not find
+[2025-07-14T15:34:53.213 info Netsdk:87378 2391:2391 DevConfigEx.cpp:13612]IN SetupSession PORT=0 and PORT: 37777
+[2025-07-14T15:34:53.215 error Netsdk:87378 2391:2391 TPTCPClient.cpp:495]connect() failed: Operation now in progress
+[2025-07-14T15:34:53.221 info Netsdk:87378 2391:2391 TPTCPClient.cpp:586]Connect Client Ip : 10.50.10.99 
+[2025-07-14T15:34:53.222 info Netsdk:87378 2391:2391 TPTCPClient.cpp:587]Connect Client Port : 57847
+[2025-07-14T15:34:53.222 info Netsdk:87378 2391:2391 TcpSocket.cpp:2369]bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:34:53.222 info Netsdk:87378 2391:2391 TcpSocket.cpp:2384]IsStandardTls bSetSSL:0, nPolicy:0, nTlsMode:0
+[2025-07-14T15:34:53.266 info Netsdk:87378 2391:2391 netsdk.cpp:10859]Leave CLIENT_RealLoadPictureEx. ret:34826288.
+[2025-07-14T17:42:38.806 info Netsdk:87378 2391:2391 netsdk.cpp:10872]Enter CLIENT_StopLoadPic. lAnalyzerHandle:34826288.
+[2025-07-14T17:42:38.807 info Netsdk:87378 2391:2391 netsdk.cpp:10879]Leave CLIENT_StopLoadPic. ret:1.
+[2025-07-14T17:42:38.807 info Netsdk:87378 2391:2391 netsdk.cpp:1078]Enter CLIENT_Logout. lLoginID:0x2105a50.
+[2025-07-14T17:42:38.818 info Netsdk:87378 2391:2391 netsdk.cpp:1100]Leave CLIENT_Logout. ret:1
+Begin Time:2025-07-16T10:50:23.369
+[2025-07-16T10:50:23.370 info Netsdk:87378 2587:2587 AVNetSDKMgr.cpp:506]Load avnetsdk library dynamically
+[2025-07-16T10:50:23.865 info Netsdk:87378 2587:2587 AVNetSDKMgr.cpp:551]avnetsdk module handle: 0x128d6e0
+
+[2025-07-16T10:50:23.866 info Netsdk:87378 2587:2587 AVNetSDKMgr.cpp:826]Load configsdk dynamically
