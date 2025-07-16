@@ -19,6 +19,10 @@ callback_num = 0
 
 class TrafficCallBackAlarmInfo:
     def __init__(self):
+        """Khởi tạo các thuộc tính lưu thông tin sự kiện.
+
+        :return: None
+        """
         self.time_str = ""
         self.plate_number_str = ""
         self.plate_color_str = ""
@@ -27,6 +31,11 @@ class TrafficCallBackAlarmInfo:
         self.country_str = ""
 
     def get_alarm_info(self, alarm_info):
+        """Phân tích dữ liệu cảnh báo từ SDK.
+
+        :param alarm_info: cấu trúc DEV_EVENT_TRAFFICJUNCTION_INFO
+        :return: None
+        """
         self.time_str = '{}-{}-{} {}:{}:{}'.format(alarm_info.UTC.dwYear, alarm_info.UTC.dwMonth, alarm_info.UTC.dwDay,
                                                    alarm_info.UTC.dwHour, alarm_info.UTC.dwMinute, alarm_info.UTC.dwSecond)
         self.plate_number_str = str(alarm_info.stTrafficCar.szPlateNumber.decode('gb2312'))
@@ -36,19 +45,35 @@ class TrafficCallBackAlarmInfo:
         self.country_str = str(alarm_info.stCommInfo.szCountry, 'utf-8')
 
 class BackUpdateUIThread(QThread):
-    # 通过类成员对象定义信号
+    # Định nghĩa tín hiệu thông qua thuộc tính lớp
     update_date = pyqtSignal(int, object, int, bool, bool)
 
-    # 处理业务逻辑
+    # Xử lý nghiệp vụ
     def run(self):
+        """Thread dùng cho việc cập nhật giao diện.
+
+        :return: None
+        """
         pass
 
 
 
 @CB_FUNCTYPE(None, C_LLONG, C_DWORD, c_void_p, POINTER(c_ubyte), C_DWORD, C_LDWORD, c_int, c_void_p)
 def AnalyzerDataCallBack(lAnalyzerHandle, dwAlarmType, pAlarmInfo, pBuffer, dwBufSize, dwUser, nSequence, reserved):
+    """Callback nhận dữ liệu sự kiện từ thiết bị.
+
+    :param lAnalyzerHandle: handle đăng ký
+    :param dwAlarmType: loại sự kiện
+    :param pAlarmInfo: con trỏ thông tin sự kiện
+    :param pBuffer: dữ liệu hình ảnh
+    :param dwBufSize: kích thước buffer
+    :param dwUser: tham số người dùng
+    :param nSequence: số thứ tự gói
+    :param reserved: dự phòng
+    :return: None
+    """
     print('Enter AnalyzerDataCallBack')
-    # 当报警类型是交通卡口事件时在界面上进行显示相关信息
+    # Nếu loại cảnh báo là sự kiện giao thông thì hiển thị thông tin lên giao diện
     if(lAnalyzerHandle == wnd.attachID)and(dwAlarmType == EM_EVENT_IVS_TYPE.TRAFFICJUNCTION):
         global callback_num
         local_path = os.path.abspath('.')
@@ -85,12 +110,17 @@ def AnalyzerDataCallBack(lAnalyzerHandle, dwAlarmType, pAlarmInfo, pBuffer, dwBu
 
 class TrafficWnd(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
+        """Khởi tạo cửa sổ chính và cấu hình SDK.
+
+        :param parent: QWidget cha nếu có
+        :return: None
+        """
         super(TrafficWnd, self).__init__(parent)
         self.setupUi(self)
-        # 界面初始化
+        # Khởi tạo giao diện
         self._init_ui()
 
-        # NetSDK用到的相关变量和回调
+        # Các biến và callback của NetSDK
         self.loginID = C_LLONG()
         self.playID = C_LLONG()
         self.freePort = c_int()
@@ -100,24 +130,28 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.m_DecodingCallBack = fDecCBFun(self.DecodingCallBack)
         self.m_RealDataCallBack = fRealDataCallBackEx2(self.RealDataCallBack)
 
-        # 获取NetSDK对象并初始化
+        # Lấy đối tượng NetSDK và khởi tạo
         self.sdk = NetClient()
         self.sdk.InitEx(self.m_DisConnectCallBack)
         self.sdk.SetAutoReconnect(self.m_ReConnectCallBack)
 
-        # 创建线程
+        # Tạo luồng
         self.backthread = BackUpdateUIThread()
-        # 连接信号
+        # Kết nối tín hiệu
         self.backthread.update_date.connect(self.update_UItable)
         self.thread = QThread()
         self.backthread.moveToThread(self.thread)
-        # 开始线程
+        # Bắt đầu luồng
         self.thread.started.connect(self.backthread.run)
         self.thread.start()
 
 
-    # 初始化界面
+    # Hàm khởi tạo giao diện
     def _init_ui(self):
+        """Thiết lập trạng thái ban đầu cho giao diện.
+
+        :return: None
+        """
         self.row = 0
         self.column = 0
         self.Login_pushButton.setEnabled(True)
@@ -144,15 +178,30 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.Detach_pushButton.clicked.connect(self.detach_btn_onclick)
 
     def log_open(self):
+        """Bật ghi log của SDK ra file.
+
+        :return: None
+        """
         log_info = LOG_SET_PRINT_INFO()
         log_info.dwSize = sizeof(LOG_SET_PRINT_INFO)
         log_info.bSetFilePath = 1
         log_info.szLogFilePath = os.path.join(os.getcwd(), 'sdk_log.log').encode('gbk')
         result = self.sdk.LogOpen(log_info)
 
-    # 登录设备
+    # Đăng nhập thiết bị
     def login_btn_onclick(self):
-        self.Attach_tableWidget.setHorizontalHeaderLabels(['时间(Time)', '事件(Event)', '车牌号(Plate No.)', '车牌颜色(Plate Color)', '车型类型(Vehicle Type)', '车身颜色(Vehicle Color)'])
+        """Đăng nhập thiết bị bằng thông tin trên giao diện.
+
+        :return: None
+        """
+        self.Attach_tableWidget.setHorizontalHeaderLabels([
+            'Thời gian',
+            'Sự kiện',
+            'Biển số',
+            'Màu biển số',
+            'Loại xe',
+            'Màu xe'
+        ])
         ip = self.IP_lineEdit.text()
         port = int(self.Port_lineEdit.text())
         username = self.User_lineEdit.text()
@@ -171,7 +220,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
 
         self.loginID, device_info, error_msg = self.sdk.LoginWithHighLevelSecurity(stuInParam, stuOutParam)
         if self.loginID:
-            self.setWindowTitle('智能交通(IntelligentTraffic)-在线(OnLine)')
+            self.setWindowTitle('Giao thông thông minh - Trực tuyến')
             self.Logout_pushButton.setEnabled(True)
             self.Login_pushButton.setEnabled(False)
             self.Play_pushButton.setEnabled(True)
@@ -179,11 +228,15 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
             for i in range(int(device_info.nChanNum)):
                 self.Channel_comboBox.addItem(str(i))
         else:
-            QMessageBox.about(self, '提示(prompt)', error_msg)
+            QMessageBox.about(self, 'Thông báo', error_msg)
 
-    # 登出设备
+    # Đăng xuất thiết bị
     def logout_btn_onclick(self):
-        # 停止拉流
+        """Đăng xuất thiết bị và giải phóng tài nguyên.
+
+        :return: None
+        """
+        # Dừng phát video
         if self.playID:
             self.sdk.StopRealPlayEx(self.playID)
             self.playID = 0
@@ -192,11 +245,11 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
             self.sdk.Stop(self.freePort)
             self.sdk.CloseStream(self.freePort)
             self.sdk.ReleasePort(self.freePort)
-        # 停止订阅
+        # Dừng đăng ký
         if self.attachID:
             self.sdk.StopLoadPic(self.attachID)
             self.attachID = 0
-        # 登出
+        # Thoát
         result = self.sdk.Logout(self.loginID)
         self.Login_pushButton.setEnabled(True)
         self.Logout_pushButton.setEnabled(False)
@@ -204,7 +257,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.StopPlay_pushButton.setEnabled(False)
         self.Attach_pushButton.setEnabled(False)
         self.Detach_pushButton.setEnabled(False)
-        self.setWindowTitle("智能交通(IntelligentTraffic)-离线(OffLine)")
+        self.setWindowTitle('Giao thông thông minh - Ngoại tuyến')
         self.loginID = C_LLONG(0)
         self.Channel_comboBox.clear()
         self.Attach_tableWidget.clear()
@@ -214,10 +267,16 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.SmallScene_label.clear()
         self.row = 0
         self.column = 0
-        self.Attach_tableWidget.setHorizontalHeaderLabels(['时间(Time)', '事件(Event)', '车牌号(Plate No.)', '车牌颜色(Plate Color)', '车型类型(Vehicle Type)', '车身颜色(Vehicle Color)','国家(Country)'])
+        self.Attach_tableWidget.setHorizontalHeaderLabels([
+            'Thời gian', 'Sự kiện', 'Biển số', 'Màu biển số', 'Loại xe', 'Màu xe', 'Quốc gia'
+        ])
 
-    # 开始实施预览
+    # Bắt đầu xem trực tiếp
     def play_btn_onclick(self):
+        """Bắt đầu xem trực tiếp kênh được chọn.
+
+        :return: None
+        """
         result, self.freePort = self.sdk.GetFreePort()
         if not result:
             pass
@@ -232,10 +291,14 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
             self.sdk.SetRealDataCallBackEx2(self.playID, self.m_RealDataCallBack, None, EM_REALDATA_FLAG.RAW_DATA)
             self.sdk.SetDecCallBack(self.freePort, self.m_DecodingCallBack)
         else:
-            QMessageBox.about(self, '提示(prompt)', 'error:' + str(self.sdk.GetLastError()))
+            QMessageBox.about(self, 'Thông báo', 'error:' + str(self.sdk.GetLastError()))
 
-    # 停止拉流
+    # Dừng phát video
     def stop_play_btn_onclick(self):
+        """Dừng xem trực tiếp.
+
+        :return: None
+        """
         if self.playID:
             self.sdk.StopRealPlayEx(self.playID)
         self.Play_pushButton.setEnabled(True)
@@ -247,24 +310,34 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.sdk.CloseStream(self.freePort)
         self.sdk.ReleasePort(self.freePort)
 
-    # 智能交通卡口事件订阅
+    # Đăng ký sự kiện giao thông
     def attach_btn_onclick(self):
+        """Đăng ký nhận sự kiện giao thông.
+
+        :return: None
+        """
         self.GlobalScene_label.clear()
         self.SmallScene_label.clear()
-        self.Attach_tableWidget.setHorizontalHeaderLabels(['时间(Time)', '事件(Event)', '车牌号(Plate No.)', '车牌颜色(Plate Color)', '车型类型(Vehicle Type)', '车身颜色(Vehicle Color)'])
+        self.Attach_tableWidget.setHorizontalHeaderLabels([
+            'Thời gian', 'Sự kiện', 'Biển số', 'Màu biển số', 'Loại xe', 'Màu xe'
+        ])
         channel = self.Channel_comboBox.currentIndex()
         bNeedPicFile = 1
         dwUser = 0
         self.attachID = self.sdk.RealLoadPictureEx(self.loginID, channel, EM_EVENT_IVS_TYPE.TRAFFICJUNCTION, bNeedPicFile, AnalyzerDataCallBack, dwUser, None)
         if not self.attachID:
-            QMessageBox.about(self, '提示(prompt)', 'error:' + str(self.sdk.GetLastError()))
+            QMessageBox.about(self, 'Thông báo', 'error:' + str(self.sdk.GetLastError()))
         else:
             self.Attach_pushButton.setEnabled(False)
             self.Detach_pushButton.setEnabled(True)
-            QMessageBox.about(self, '提示(prompt)', "订阅成功(Subscribe success)")
+            QMessageBox.about(self, 'Thông báo', 'Đăng ký thành công')
 
-    # 取消订阅
+    # Hủy đăng ký
     def detach_btn_onclick(self):
+        """Hủy đăng ký sự kiện giao thông.
+
+        :return: None
+        """
         if (self.attachID == 0):
             return
         self.sdk.StopLoadPic(self.attachID)
@@ -273,10 +346,21 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.attachID = 0
         self.Attach_pushButton.setEnabled(True)
         self.Detach_pushButton.setEnabled(False)
-        self.Attach_tableWidget.setHorizontalHeaderLabels(['时间(Time)', '事件(Event)', '车牌号(Plate No.)', '车牌颜色(Plate Color)', '车型类型(Vehicle Type)', '车身颜色(Vehicle Color)'])
+        self.Attach_tableWidget.setHorizontalHeaderLabels([
+            'Thời gian', 'Sự kiện', 'Biển số', 'Màu biển số', 'Loại xe', 'Màu xe'
+        ])
 
 
     def update_UItable(self, dwAlarmType, show_info,detect_object_id, is_global, is_small):
+        """Cập nhật bảng sự kiện và hiển thị hình ảnh.
+
+        :param dwAlarmType: loại sự kiện
+        :param show_info: thông tin hiển thị
+        :param detect_object_id: id ảnh
+        :param is_global: có ảnh toàn cảnh hay không
+        :param is_small: có ảnh xe hay không
+        :return: None
+        """
         self.GlobalScene_label.clear()
         self.SmallScene_label.clear()
         if(dwAlarmType == EM_EVENT_IVS_TYPE.TRAFFICJUNCTION):
@@ -284,15 +368,15 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
                 self.Attach_tableWidget.clear()
                 self.Attach_tableWidget.setRowCount(0)
                 self.Attach_tableWidget.setHorizontalHeaderLabels(
-                    ['时间(Time)', '事件(Event)', '车牌号(Plate No.)', '车牌颜色(Plate Color)', '车型类型(Vehicle Type)',
-                    '车身颜色(Vehicle Color)'])
+                    ['Thời gian', 'Sự kiện', 'Biển số', 'Màu biển số', 'Loại xe',
+                    'Màu xe'])
                 self.row = 0
-                # ui更新
+                # Cập nhật giao diện
                 self.Attach_tableWidget.viewport().update()
             self.Attach_tableWidget.setRowCount(self.row + 1)
             item1 = QTableWidgetItem(show_info.time_str)
             self.Attach_tableWidget.setItem(self.row, self.column, item1)
-            item2 = QTableWidgetItem('交通路口事件(Traffic junction event)')
+            item2 = QTableWidgetItem('Sự kiện nút giao thông')
             self.Attach_tableWidget.setItem(self.row, self.column + 1, item2)
             item3 = QTableWidgetItem(show_info.plate_number_str)
             self.Attach_tableWidget.setItem(self.row, self.column + 2, item3)
@@ -317,24 +401,60 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
             self.Attach_tableWidget.viewport().update()
 
 
-    # 实现断线回调函数功能
+    # Callback khi mất kết nối
     def DisConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
-        self.setWindowTitle("智能交通(IntelligentTraffic)-离线(OffLine)")
+        """Callback khi mất kết nối thiết bị.
 
-    # 实现断线重连回调函数功能
+        :param lLoginID: handle đăng nhập
+        :param pchDVRIP: địa chỉ IP
+        :param nDVRPort: cổng
+        :param dwUser: tham số người dùng
+        :return: None
+        """
+        self.setWindowTitle('Giao thông thông minh - Ngoại tuyến')
+
+    # Callback khi kết nối lại
     def ReConnectCallBack(self, lLoginID, pchDVRIP, nDVRPort, dwUser):
-        self.setWindowTitle('智能交通(IntelligentTraffic)-在线(OnLine)')
+        """Callback khi kết nối lại thành công.
 
-    # 拉流回调函数功能
+        :param lLoginID: handle đăng nhập
+        :param pchDVRIP: địa chỉ IP
+        :param nDVRPort: cổng
+        :param dwUser: tham số người dùng
+        :return: None
+        """
+        self.setWindowTitle('Giao thông thông minh - Trực tuyến')
+
+    # Callback dữ liệu luồng
     def RealDataCallBack(self, lRealHandle, dwDataType, pBuffer, dwBufSize, param, dwUser):
+        """Nhận dữ liệu video thời gian thực từ thiết bị.
+
+        :param lRealHandle: handle xem trực tiếp
+        :param dwDataType: loại dữ liệu
+        :param pBuffer: buffer dữ liệu
+        :param dwBufSize: kích thước buffer
+        :param param: tham số mở rộng
+        :param dwUser: tham số người dùng
+        :return: None
+        """
         if lRealHandle == self.playID:
             data_buffer = cast(pBuffer, POINTER(c_ubyte * dwBufSize)).contents
             with open('./data.dav', 'ab+') as data_file:
                 data_file.write(data_buffer)
             self.sdk.InputData(self.freePort, pBuffer, dwBufSize)
 
-    # PLAYSDK解码回调函数功能
+    # Callback giải mã PLAYSDK
     def DecodingCallBack(self, nPort, pBuf, nSize, pFrameInfo, pUserData, nReserved2):
+        """Nhận khung dữ liệu đã giải mã từ PLAYSDK.
+
+        :param nPort: cổng phát
+        :param pBuf: buffer dữ liệu YUV
+        :param nSize: kích thước dữ liệu
+        :param pFrameInfo: thông tin khung
+        :param pUserData: dữ liệu người dùng
+        :param nReserved2: dự phòng
+        :return: None
+        """
         # here get YUV data, pBuf is YUV data IYUV/YUV420 ,size is nSize, pFrameInfo is frame info with height, width.
         data = cast(pBuf, POINTER(c_ubyte * nSize)).contents
         info = pFrameInfo.contents
@@ -343,8 +463,13 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         if info.nType == 3:
             pass
 
-    # 关闭主窗口时清理资源
+    # Dọn dẹp khi đóng cửa sổ chính
     def closeEvent(self, event):
+        """Dọn dẹp tài nguyên khi cửa sổ đóng.
+
+        :param event: sự kiện đóng
+        :return: None
+        """
         event.accept()
         if self.attachID:
             self.sdk.StopLoadPic(self.attachID)
