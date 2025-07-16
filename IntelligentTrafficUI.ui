@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>智能交通IntelligentTrffic(离线offline)</string>
+   <string>Giao thông thông minh - Ngoại tuyến</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="Login_groupBox">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>设备登录(Login info)</string>
+     <string>Thông tin đăng nhập</string>
     </property>
     <widget class="QPushButton" name="Logout_pushButton">
      <property name="geometry">
@@ -36,7 +36,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>登出(Logout)</string>
+      <string>Đăng xuất</string>
      </property>
     </widget>
     <widget class="QPushButton" name="Login_pushButton">
@@ -49,7 +49,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>登录(Login)</string>
+      <string>Đăng nhập</string>
      </property>
     </widget>
     <widget class="QLabel" name="Pwd_label">
@@ -62,7 +62,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>密码(Password)</string>
+      <string>Mật khẩu</string>
      </property>
     </widget>
     <widget class="QLabel" name="User_label">
@@ -75,7 +75,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>用户名(Username)</string>
+      <string>Tên người dùng</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="Port_lineEdit">
@@ -121,7 +121,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>IP地址(IP)</string>
+      <string>Địa chỉ IP</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="IP_lineEdit">
@@ -144,7 +144,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>端口(Port)</string>
+      <string>Cổng</string>
      </property>
     </widget>
    </widget>
@@ -158,7 +158,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>操作（Operation）</string>
+     <string>Thao tác</string>
     </property>
     <widget class="QPushButton" name="Play_pushButton">
      <property name="geometry">
@@ -170,7 +170,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>预览(Start Monitoring)</string>
+      <string>Xem trực tiếp</string>
      </property>
     </widget>
     <widget class="QPushButton" name="StopPlay_pushButton">
@@ -183,7 +183,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>停止预览（Stop Monitoring）</string>
+      <string>Dừng xem</string>
      </property>
     </widget>
     <widget class="QPushButton" name="Attach_pushButton">
@@ -196,7 +196,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>订阅（Subscribe）</string>
+      <string>Đăng ký</string>
      </property>
     </widget>
     <widget class="QPushButton" name="Detach_pushButton">
@@ -209,7 +209,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>停止订阅（Cancel Subscription）</string>
+      <string>Hủy đăng ký</string>
      </property>
     </widget>
     <widget class="QComboBox" name="Channel_comboBox">
@@ -232,7 +232,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>通道（Channel)</string>
+      <string>Kênh</string>
      </property>
     </widget>
    </widget>
@@ -246,7 +246,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>播放（Play）</string>
+     <string>Phát</string>
     </property>
     <widget class="QLabel" name="Video_label">
      <property name="geometry">
@@ -275,7 +275,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>订阅信息(Subscription  Details)</string>
+     <string>Thông tin đăng ký</string>
     </property>
     <widget class="QTableWidget" name="Attach_tableWidget">
      <property name="geometry">
@@ -291,7 +291,7 @@
      </attribute>
      <column>
       <property name="text">
-       <string>时间(Time)</string>
+       <string>Thời gian</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -299,7 +299,7 @@
      </column>
      <column>
       <property name="text">
-       <string extracomment="123">事件(Event)</string>
+       <string extracomment="123">Sự kiện</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -307,7 +307,7 @@
      </column>
      <column>
       <property name="text">
-       <string>车牌号(Plate No.)</string>
+       <string>Biển số</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -315,7 +315,7 @@
      </column>
      <column>
       <property name="text">
-       <string>车牌颜色(Plate Color)</string>
+       <string>Màu biển số</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -323,7 +323,7 @@
      </column>
      <column>
       <property name="text">
-       <string>车型类型(Vehicle Type)</string>
+       <string>Loại xe</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -331,7 +331,7 @@
      </column>
      <column>
       <property name="text">
-       <string>车身颜色(Vehicle Color)</string>
+       <string>Màu xe</string>
       </property>
       <property name="textAlignment">
        <set>AlignCenter</set>
@@ -365,7 +365,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>全景图（Panoramic Image）</string>
+     <string>Ảnh toàn cảnh</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="VehicleInfo_groupBox">
@@ -378,7 +378,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>车牌图（Plate Image)</string>
+     <string>Ảnh biển số</string>
     </property>
     <widget class="QLabel" name="SmallScene_label">
      <property name="geometry">
@@ -418,7 +418,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="Switch_action">
    <property name="text">
-    <string>中英文切换</string>
+    <string>Chuyển đổi ngôn ngữ</string>
    </property>
   </action>
  </widget>
