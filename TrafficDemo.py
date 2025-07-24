@@ -1,5 +1,7 @@
 # coding=utf-8
 import sys
+import os
+import csv
 from PyQt5.QtWidgets import QMainWindow,QApplication, QTableWidgetItem, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -15,6 +17,7 @@ from queue import Queue
 
 global wnd
 callback_num = 0
+HISTORY_CSV = 'event_history.csv'
 
 
 class TrafficCallBackAlarmInfo:
@@ -144,6 +147,17 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         # Bắt đầu luồng
         self.thread.started.connect(self.backthread.run)
         self.thread.start()
+
+        # Prepare history log file
+        self.history_path = os.path.join(os.getcwd(), HISTORY_CSV)
+        if not os.path.exists(self.history_path):
+            with open(self.history_path, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                writer.writerow([
+                    'time', 'event', 'plate_number', 'plate_color',
+                    'vehicle_type', 'vehicle_color', 'country',
+                    'global_img', 'small_img'
+                ])
 
 
     # Hàm khởi tạo giao diện
@@ -397,6 +411,21 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
                     image = QPixmap('./Small/Small_Img' + str(detect_object_id) + '.jpg').scaled(self.SmallScene_label.width(),
                                                                                   self.SmallScene_label.height())
                     self.SmallScene_label.setPixmap(image)
+            global_img = './Global/Global_Img' + str(detect_object_id) + '.jpg' if is_global else ''
+            small_img = './Small/Small_Img' + str(detect_object_id) + '.jpg' if is_small else ''
+            with open(self.history_path, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                writer.writerow([
+                    show_info.time_str,
+                    'TRAFFICJUNCTION',
+                    show_info.plate_number_str,
+                    show_info.plate_color_str,
+                    show_info.object_subType_str,
+                    show_info.vehicle_color_str,
+                    show_info.country_str,
+                    global_img,
+                    small_img
+                ])
             self.row += 1
             self.Attach_tableWidget.viewport().update()
 
