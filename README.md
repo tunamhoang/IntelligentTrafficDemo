@@ -16,7 +16,15 @@ This repository demonstrates a simple PyQt5 application that integrates with the
    ```bash
    python TrafficDemo.py
    ```
-   The script `testGUI.py` can be used to test the interface.
+The script `testGUI.py` can be used to test the interface.
+
+### History Search
+Each recognized event is written to `event_history.csv`. You can filter and
+display past records with:
+
+```bash
+python history_search.py --start "2023-01-01 00:00:00" --end "2023-01-02 00:00:00"
+```
 
 ## Tiếng Việt
 
@@ -35,3 +43,11 @@ Kho lưu trữ này minh họa một ứng dụng PyQt5 đơn giản sử dụng
    python TrafficDemo.py
    ```
    File `testGUI.py` chỉ nhằm mục đích kiểm thử giao diện.
+
+### Tra cứu lịch sử
+Mỗi sự kiện nhận dạng được ghi vào `event_history.csv`. Bạn có thể lọc và xem
+lại lịch sử bằng lệnh:
+
+```bash
+python history_search.py --start "2023-01-01 00:00:00" --end "2023-01-02 00:00:00"
+```
