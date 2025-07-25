@@ -190,6 +190,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.StopPlay_pushButton.clicked.connect(self.stop_play_btn_onclick)
         self.Attach_pushButton.clicked.connect(self.attach_btn_onclick)
         self.Detach_pushButton.clicked.connect(self.detach_btn_onclick)
+        self.Attach_tableWidget.cellClicked.connect(self.on_table_item_clicked)
 
     def log_open(self):
         """Bật ghi log của SDK ra file.
@@ -402,17 +403,16 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
             self.Attach_tableWidget.setItem(self.row, self.column + 5, item6)
             item7 = QTableWidgetItem(show_info.country_str)
             self.Attach_tableWidget.setItem(self.row, self.column + 6, item7)
-            if (self.attachID != 0):
-                if is_global:
-                    image = QPixmap('./Global/Global_Img' + str(detect_object_id) + '.jpg').scaled(self.GlobalScene_label.width(),
-                                                                                      self.GlobalScene_label.height())
-                    self.GlobalScene_label.setPixmap(image)
-                if is_small:
-                    image = QPixmap('./Small/Small_Img' + str(detect_object_id) + '.jpg').scaled(self.SmallScene_label.width(),
-                                                                                  self.SmallScene_label.height())
-                    self.SmallScene_label.setPixmap(image)
             global_img = './Global/Global_Img' + str(detect_object_id) + '.jpg' if is_global else ''
             small_img = './Small/Small_Img' + str(detect_object_id) + '.jpg' if is_small else ''
+            item1.setData(Qt.UserRole, (global_img, small_img))
+            if (self.attachID != 0):
+                if is_global:
+                    image = QPixmap('./Global/Global_Img' + str(detect_object_id) + '.jpg').scaled(self.GlobalScene_label.width(), self.GlobalScene_label.height(), Qt.KeepAspectRatio)
+                    self.GlobalScene_label.setPixmap(image)
+                if is_small:
+                    image = QPixmap('./Small/Small_Img' + str(detect_object_id) + '.jpg').scaled(self.SmallScene_label.width(), self.SmallScene_label.height(), Qt.KeepAspectRatio)
+                    self.SmallScene_label.setPixmap(image)
             with open(self.history_path, 'a', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow([
@@ -428,6 +428,27 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
                 ])
             self.row += 1
             self.Attach_tableWidget.viewport().update()
+
+    def on_table_item_clicked(self, row, column):
+        item = self.Attach_tableWidget.item(row, 0)
+        if not item:
+            return
+        data = item.data(Qt.UserRole)
+        if not data:
+            return
+        global_img, small_img = data
+        if global_img and os.path.exists(global_img):
+            pix = QPixmap(global_img).scaled(
+                self.GlobalScene_label.width(), self.GlobalScene_label.height(), Qt.KeepAspectRatio)
+            self.GlobalScene_label.setPixmap(pix)
+        else:
+            self.GlobalScene_label.clear()
+        if small_img and os.path.exists(small_img):
+            pix = QPixmap(small_img).scaled(
+                self.SmallScene_label.width(), self.SmallScene_label.height(), Qt.KeepAspectRatio)
+            self.SmallScene_label.setPixmap(pix)
+        else:
+            self.SmallScene_label.clear()
 
 
     # Callback khi mất kết nối
