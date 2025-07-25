@@ -175,10 +175,11 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.Attach_pushButton.setEnabled(False)
         self.Detach_pushButton.setEnabled(False)
 
-        self.IP_lineEdit.setText('192.168.128.61')
+        # Thiết lập cấu hình đăng nhập mặc định
+        self.IP_lineEdit.setText('172.19.11.173')
         self.Port_lineEdit.setText('37777')
         self.User_lineEdit.setText('admin')
-        self.Pwd_lineEdit.setText('admin123')
+        self.Pwd_lineEdit.setText('SsgCT7LB@123')
 
         self.setWindowFlag(Qt.WindowMinimizeButtonHint)
         self.setWindowFlag(Qt.WindowCloseButtonHint)
