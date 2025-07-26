@@ -43,7 +43,7 @@ Kho lưu trữ này minh họa một ứng dụng PyQt5 đơn giản sử dụng
    python TrafficDemo.py
    ```
    File `testGUI.py` chỉ nhằm mục đích kiểm thử giao diện.
-
+export DISPLAY=127.0.0.1:0
 ### Tra cứu lịch sử
 Mỗi sự kiện nhận dạng được ghi vào `event_history.csv`. Bạn có thể lọc và xem
 lại lịch sử bằng lệnh:
