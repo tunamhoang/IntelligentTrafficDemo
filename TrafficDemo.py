@@ -175,6 +175,9 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.Attach_pushButton.setEnabled(False)
         self.Detach_pushButton.setEnabled(False)
 
+        # Thiết lập cấu hình đăng nhập mặc định
+        self.row_to_id = {}
+
         self.IP_lineEdit.setText('172.19.11.173')
         self.Port_lineEdit.setText('37777')
         self.User_lineEdit.setText('admin')
@@ -190,6 +193,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.StopPlay_pushButton.clicked.connect(self.stop_play_btn_onclick)
         self.Attach_pushButton.clicked.connect(self.attach_btn_onclick)
         self.Detach_pushButton.clicked.connect(self.detach_btn_onclick)
+        self.Attach_tableWidget.cellClicked.connect(self.on_table_item_clicked)
 
     def log_open(self):
         """Bật ghi log của SDK ra file.
@@ -279,6 +283,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.Video_label.clear()
         self.GlobalScene_label.clear()
         self.SmallScene_label.clear()
+        self.row_to_id.clear()
         self.row = 0
         self.column = 0
         self.Attach_tableWidget.setHorizontalHeaderLabels([
@@ -363,6 +368,7 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
         self.Attach_tableWidget.setHorizontalHeaderLabels([
             'Thời gian', 'Sự kiện', 'Biển số', 'Màu biển số', 'Loại xe', 'Màu xe'
         ])
+        self.row_to_id.clear()
 
 
     def update_UItable(self, dwAlarmType, show_info,detect_object_id, is_global, is_small):
@@ -426,8 +432,29 @@ class TrafficWnd(QMainWindow, Ui_MainWindow):
                     global_img,
                     small_img
                 ])
+            self.row_to_id[self.row] = detect_object_id
             self.row += 1
             self.Attach_tableWidget.viewport().update()
+
+    def on_table_item_clicked(self, row, column):
+        """Hiển thị lại hình ảnh khi chọn dòng trong bảng."""
+        obj_id = self.row_to_id.get(row)
+        if obj_id is None:
+            return
+        global_path = os.path.join('Global', f'Global_Img{obj_id}.jpg')
+        small_path = os.path.join('Small', f'Small_Img{obj_id}.jpg')
+        if os.path.exists(global_path):
+            pix = QPixmap(global_path).scaled(
+                self.GlobalScene_label.width(),
+                self.GlobalScene_label.height()
+            )
+            self.GlobalScene_label.setPixmap(pix)
+        if os.path.exists(small_path):
+            pix = QPixmap(small_path).scaled(
+                self.SmallScene_label.width(),
+                self.SmallScene_label.height()
+            )
+            self.SmallScene_label.setPixmap(pix)
 
 
     # Callback khi mất kết nối
