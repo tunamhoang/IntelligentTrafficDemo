@@ -46,8 +46,43 @@ Kho lưu trữ này minh họa một ứng dụng PyQt5 đơn giản sử dụng
 export DISPLAY=127.0.0.1:0
 ### Tra cứu lịch sử
 Mỗi sự kiện nhận dạng được ghi vào `event_history.csv`. Bạn có thể lọc và xem
-lại lịch sử bằng lệnh:
+lại lịch sử bằng lệnh:# Tạo venv Python 3.8 và cài PyQt5 trong đó
+sudo apt install -y python3.8 python3.8-venv
+cd ~/IntelligentTrafficDemo
+python3.8 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install PyQt5
+# (nếu cần) pip install /path/to/NetSDK-...whl
+
+# Thêm thư viện Dahua .so vào LD_LIBRARY_PATH (chỉnh đúng đường dẫn)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/c/temp/General_NetSDK_ChnEng_Python_linux64_IS_V3.060.0000000.0.R.250409/libs
+
+# Đặt DISPLAY (X server đang chạy trên Windows)
+export DISPLAY=10.50.10.99:0
+
+# Chạy
+python TrafficDemo.py
+
 
 ```bash
 python history_search.py --start "2023-01-01 00:00:00" --end "2023-01-02 00:00:00"
 ```
+### Chú ý:
+Tạo venv Python 3.8 và cài PyQt5 trong đó
+sudo apt install -y python3.8 python3.8-venv
+cd ~/IntelligentTrafficDemo
+python3.8 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install PyQt5
+# (nếu cần) pip install /path/to/NetSDK-...whl
+
+# Thêm thư viện Dahua .so vào LD_LIBRARY_PATH (chỉnh đúng đường dẫn)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/c/temp/General_NetSDK_ChnEng_Python_linux64_IS_V3.060.0000000.0.R.250409/libs
+
+# Đặt DISPLAY (X server đang chạy trên Windows)
+export DISPLAY=10.50.x.x:0
+
+# Chạy
+python TrafficDemo.py
